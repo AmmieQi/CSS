@@ -12,18 +12,18 @@ classifier.py </br>
   简单的分类 </br>
 dataset.py </br>
    加载相关数据集的问题与答案，并处理成对应的元组 </br>
-    获取并处理VQA特征数据集
-eval.py
-  验证
-fc.py
-  全连接
-language_model.py
-  处理词嵌入或问题嵌入
-main.py
-  主函数，这个主要是来自另一篇论文，使用了LMH偏差计算方法
-train.py
-  这里是本文的重点与创新点，CSS的方法再此体现
-util.py
-  一些工具函数
-vqa_debias_loss_function.py
-  处理偏差的函数
+    获取并处理VQA特征数据集 </br>
+eval.py </br>
+  验证 </br>
+fc.py </br>
+  全连接 </br>
+language_model.py </br>
+  处理词嵌入或问题嵌入 </br>
+main.py </br>
+  主函数，这个主要是来自另一篇论文，使用了LMH偏差计算方法 </br>
+train.py </br>
+  这里是本文的重点与创新点，CSS的方法再此体现 </br>
+util.py </br>
+  一些工具函数 </br>
+vqa_debias_loss_function.py </br>
+  处理偏差的函数 </br>
