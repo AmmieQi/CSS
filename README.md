@@ -4,14 +4,14 @@
 
 首先，大致解读一下每个py文件的内容。本文重点与创新点CSS体现在train.py
 
-attention.py
-  具有两个方法：attention()方法是直接拼接，newattention（）方法是q,v对应相乘
-base_model.py
-  使用基线模型进行训练，（使用了上面的attention和classifier）
-classifier.py
-  简单的分类
-dataset.py
-   加载相关数据集的问题与答案，并处理成对应的元组
+attention.py </br>
+  具有两个方法：attention()方法是直接拼接，newattention（）方法是q,v对应相乘</br>
+base_model.py </br>
+  使用基线模型进行训练，（使用了上面的attention和classifier） </br>
+classifier.py </br>
+  简单的分类 </br>
+dataset.py </br>
+   加载相关数据集的问题与答案，并处理成对应的元组 </br>
     获取并处理VQA特征数据集
 eval.py
   验证
