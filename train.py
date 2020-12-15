@@ -14,7 +14,7 @@ from tqdm import tqdm
 import random
 import copy
 
-# 计算遮挡部分的贡献分数吗
+# 计算遮挡部分的贡献分数
 def compute_score_with_logits(logits, labels):
     logits = torch.argmax(logits, 1)
     one_hots = torch.zeros(*labels.size()).cuda()
@@ -79,7 +79,7 @@ def train(model, train_loader, eval_loader,args,qid2type):
 
             #----------------------------基础的updn-----------------------------------------------------------------------
             if mode=='updn':
-                pred, loss,_ = model(v, q, a, b, None)
+                pred, loss,_ = model(v, q, a, b, None) # 
                 if (loss != loss).any():
                     raise ValueError("NaN loss")
                 loss.backward()
@@ -196,7 +196,7 @@ def train(model, train_loader, eval_loader,args,qid2type):
                         num=len(torch.nonzero(v_grad_mask[x]))
                         v_mask[x].scatter_(0,v_mask_ind[x,:num],1)
                 else:
-                    v_grad_ind = v_grad.sort(1, descending=True)[1][:, :topv]# 在这一步似乎就得到了关键区域
+                    v_grad_ind = v_grad.sort(1, descending=True)[1][:, :topv]# 在这一步就得到了关键区域
                     # 或者我们直接找下面的v_mask？
                     v_star = v_ind.gather(1, v_grad_ind)
                     v_mask.scatter_(1, v_star, 1)   # 此时v_mask代表I+
@@ -315,16 +315,12 @@ def train(model, train_loader, eval_loader,args,qid2type):
                     print("v_mask: ", v_mask.size())
                     visual_grad_cam = visual_grad.sum(2)
                     # visual_grad(512, 36, 2048)
-                    print("visual_grad: ", visual_grad.size())
                     # visual_grad_cam(512,36)
-                    print("visual_grad_cam: ", visual_grad_cam.size())
                     hint_sort, hint_ind = hintscore.sort(1, descending=True)
                     # hintscore (512, 36)
                     # hint_ind (512, 36)
                     # hint_sort(512, 36)
                     print("hintscore: ", hintscore.size())
-                    print("hint_ind: ", hint_ind.size())
-                    print("hint_sort: ", hint_sort.size())
                     v_ind = hint_ind[:, :top_hint]
                     # v_ind (512, 9)
                     print("v_ind: ", v_ind.size())
@@ -332,6 +328,7 @@ def train(model, train_loader, eval_loader,args,qid2type):
 
 
                     if topv == -1:
+                        # 实际上topv == 1才能得到论文里面的结果
                         # 此if语句里面大都是（512， 9）
                         # v_grad_score(512, 9)
                         # v_grad_ind(512, 9)
