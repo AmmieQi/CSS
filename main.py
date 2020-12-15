@@ -97,7 +97,7 @@ def get_bias(train_dset,eval_dset):
         ans = ex["answer"]          # 获得答案
         q_type = ans["question_type"]        # 获得答案的问题类型
         question_type_to_count[q_type] += 1     # 每种类型样本数加1（这种问题类型是指比较具体的，不是yesno,other,num等）
-        if ans["labels"] is not None:           # 什么意思？？？
+        if ans["labels"] is not None:           
             for label, score in zip(ans["labels"], ans["scores"]):
                 question_type_to_probs[q_type][label] += score
     question_type_to_prob_array = {}
